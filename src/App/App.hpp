@@ -10,9 +10,7 @@ public:
 private:
 	int N;
 	std::vector<int> numbers;
-	int* numArr;
 	std::vector<int> randomNumbers(int size, int max);
-	int* getRandomNumbers(int size, int max);
 };
 
 #endif

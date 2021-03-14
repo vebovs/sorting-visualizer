@@ -2,7 +2,8 @@
 #include "unistd.h"
 
 Algorithms::Algorithms()
-{}
+{
+}
 
 void Algorithms::custom(std::vector<int> numbers, sf::RenderWindow& window)
 {
@@ -44,8 +45,4 @@ void Algorithms::custom(std::vector<int> numbers, sf::RenderWindow& window)
 		window.display();
 		usleep(2500);
 	}
-}
-
-void Algorithms::quicksort(int numbers[], int start, int end, sf::RenderWindow& window)
-{
 }

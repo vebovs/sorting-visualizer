@@ -8,7 +8,6 @@ App::App()
 {
 	this->N = 1024;
 	this->numbers = randomNumbers(N, N / 2 - 32);
-	this->numArr = getRandomNumbers(N, N / 2 - 32);
 }
 
 std::vector<int> App::randomNumbers(int size, int max)
@@ -21,18 +20,6 @@ std::vector<int> App::randomNumbers(int size, int max)
 	}
 
 	return numbers;
-}
-
-int* App::getRandomNumbers(int size, int max)
-{
-	int numArr[size];
-
-	for (int i = 0; i < size; i++)
-	{
-		numArr[i] = rand() % max;
-	}
-
-	return numArr;
 }
 
 void App::Run()
@@ -59,8 +46,7 @@ void App::Run()
 		}
 
 		window.clear();
-		//algo.custom(this->numbers, window);
-		algo.quicksort(this->numArr, 0, this->N - 1, window);
+		algo.custom(this->numbers, window);
 		window.close();
 	}
 }

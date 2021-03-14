@@ -1,15 +1,15 @@
 #include "./App/App.hpp"
 
-void quicksort(int numbers[], int start, int end);
-int partition(int numbers[], int start, int end);
-void swap(int numbers[], int a, int b);
+void quicksort(std::vector<int>& numbers, int start, int end);
+int partition(std::vector<int>& numbers, int start, int end);
+void swap(std::vector<int>& numbers, int a, int b);
 
 int main()
 {
 	//App app = App();
 	//app.Run();
 
-	int numbers[] = { 5, 4, 8, 12, 3 };
+	std::vector<int> numbers = { 5, 4, 8, 12, 3 };
 
 	quicksort(numbers, 0, 4);
 
@@ -20,7 +20,8 @@ int main()
 
 	return 0;
 }
-void quicksort(int numbers[], int start, int end)
+
+void quicksort(std::vector<int>& numbers, int start, int end)
 {
 	if (start >= end)
 	{
@@ -32,7 +33,7 @@ void quicksort(int numbers[], int start, int end)
 	quicksort(numbers, index + 1, end);
 }
 
-int partition(int numbers[], int start, int end)
+int partition(std::vector<int>& numbers, int start, int end)
 {
 	int index = start;
 	int pivot = numbers[end];
@@ -51,7 +52,7 @@ int partition(int numbers[], int start, int end)
 	return index;
 }
 
-void swap(int numbers[], int a, int b)
+void swap(std::vector<int>& numbers, int a, int b)
 {
 	int temp = numbers[a];
 	numbers[a] = numbers[b];
