@@ -45,3 +45,7 @@ void Algorithms::custom(std::vector<int> numbers, sf::RenderWindow& window)
 		usleep(2500);
 	}
 }
+
+void Algorithms::quicksort(int numbers[], int start, int end, sf::RenderWindow& window)
+{
+}
