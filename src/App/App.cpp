@@ -37,6 +37,13 @@ void App::Run()
 
 	Algorithms algo = Algorithms();
 
+	algo.quicksort(numbers, 0, static_cast<int>(this->numbers.size()) - 1, window);
+
+	for (int i = 0; i < static_cast<int>(this->numbers.size()); i++)
+	{
+		std::cout << this->numbers[i] << std::endl;
+	}
+
 	while (window.isOpen())
 	{
 		while (window.pollEvent(event))

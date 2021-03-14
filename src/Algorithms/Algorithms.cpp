@@ -1,6 +1,9 @@
 #include "Algorithms.hpp"
 #include "unistd.h"
 
+int partition(std::vector<int>& numbers, int start, int end);
+void swap(std::vector<int>& numbers, int a, int b);
+
 Algorithms::Algorithms()
 {
 }
@@ -45,4 +48,42 @@ void Algorithms::custom(std::vector<int> numbers, sf::RenderWindow& window)
 		window.display();
 		usleep(2500);
 	}
+}
+
+void Algorithms::quicksort(std::vector<int>& numbers, int start, int end, sf::RenderWindow& window)
+{
+	if (start >= end)
+	{
+		return;
+	}
+
+	int index = partition(numbers, start, end);
+	quicksort(numbers, start, index - 1, window);
+	quicksort(numbers, index + 1, end, window);
+}
+
+int partition(std::vector<int>& numbers, int start, int end)
+{
+	int index = start;
+	int pivot = numbers[end];
+
+	for (int i = start; i < end; i++)
+	{
+		if (numbers[i] < pivot)
+		{
+			swap(numbers, i, index);
+			index++;
+		}
+	}
+
+	swap(numbers, index, end);
+
+	return index;
+}
+
+void swap(std::vector<int>& numbers, int a, int b)
+{
+	int temp = numbers[a];
+	numbers[a] = numbers[b];
+	numbers[b] = temp;
 }
