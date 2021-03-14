@@ -20,10 +20,23 @@ void Algorithms::custom(std::vector<int> numbers, sf::RenderWindow& window)
 
 		sf::VertexArray lines(sf::Lines);
 
-		for (size_t i = 0; i < numbers.size(); i++)
+		for (size_t k = 0; k < numbers.size(); k++)
 		{
-			lines.append(sf::Vertex(sf::Vector2f(i, window.getSize().y)));
-			lines.append(sf::Vertex(sf::Vector2f(i, window.getSize().y - numbers[i])));
+			if (k == i)
+			{
+				lines.append(sf::Vertex(sf::Vector2f(k, window.getSize().y), sf::Color(167, 255, 131, 255)));
+				lines.append(sf::Vertex(sf::Vector2f(k, window.getSize().y - numbers[k]), sf::Color(167, 255, 131, 255)));
+			}
+			else if (k > i)
+			{
+				lines.append(sf::Vertex(sf::Vector2f(k, window.getSize().y), sf::Color(248, 89, 89, 255)));
+				lines.append(sf::Vertex(sf::Vector2f(k, window.getSize().y - numbers[k]), sf::Color(248, 89, 89, 255)));
+			}
+			else
+			{
+				lines.append(sf::Vertex(sf::Vector2f(k, window.getSize().y)));
+				lines.append(sf::Vertex(sf::Vector2f(k, window.getSize().y - numbers[k])));
+			}
 		}
 
 		window.clear();
