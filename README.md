@@ -6,7 +6,7 @@ A simple App made in C++ and SFML for visualizing sorting algorithms
 
 Algorithm | Time complexity
 ----------|----------------
-Generic/custom | O(n<sup>2</sup>)
+Custom | O(n<sup>2</sup>)
 
 # Some helpful resources
 
