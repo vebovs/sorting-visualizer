@@ -4,7 +4,7 @@
 Algorithms::Algorithms()
 {}
 
-void Algorithms::sorter(std::vector<int> numbers, sf::RenderWindow& window)
+void Algorithms::custom(std::vector<int> numbers, sf::RenderWindow& window)
 {
 	for (size_t i = 0; i < numbers.size(); i++)
 	{

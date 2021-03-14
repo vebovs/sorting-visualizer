@@ -46,7 +46,7 @@ void App::Run()
 		}
 
 		window.clear();
-		algo.sorter(this->numbers, window);
+		algo.custom(this->numbers, window);
 		window.close();
 	}
 }

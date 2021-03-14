@@ -5,7 +5,7 @@ class Algorithms
 {
 public:
 	Algorithms();
-	void sorter(std::vector<int> numbers, sf::RenderWindow& window);
+	void custom(std::vector<int> numbers, sf::RenderWindow& window);
 };
 
 #endif
