@@ -1,8 +1,8 @@
 #include "Algorithms.hpp"
 #include "unistd.h"
 
-int partition(std::vector<int>& numbers, int start, int end);
-void swap(std::vector<int>& numbers, int a, int b);
+int partition(std::vector<int>& numbers, int start, int end, sf::RenderWindow& window);
+void swap(std::vector<int>& numbers, int a, int b, sf::RenderWindow& window);
 
 Algorithms::Algorithms()
 {
@@ -57,12 +57,12 @@ void Algorithms::quicksort(std::vector<int>& numbers, int start, int end, sf::Re
 		return;
 	}
 
-	int index = partition(numbers, start, end);
+	int index = partition(numbers, start, end, window);
 	quicksort(numbers, start, index - 1, window);
 	quicksort(numbers, index + 1, end, window);
 }
 
-int partition(std::vector<int>& numbers, int start, int end)
+int partition(std::vector<int>& numbers, int start, int end, sf::RenderWindow& window)
 {
 	int index = start;
 	int pivot = numbers[end];
@@ -71,19 +71,38 @@ int partition(std::vector<int>& numbers, int start, int end)
 	{
 		if (numbers[i] < pivot)
 		{
-			swap(numbers, i, index);
+			swap(numbers, i, index, window);
 			index++;
 		}
 	}
 
-	swap(numbers, index, end);
+	swap(numbers, index, end, window);
 
 	return index;
 }
 
-void swap(std::vector<int>& numbers, int a, int b)
+void swap(std::vector<int>& numbers, int a, int b, sf::RenderWindow& window)
 {
 	int temp = numbers[a];
 	numbers[a] = numbers[b];
 	numbers[b] = temp;
+
+	std::vector<sf::RectangleShape> lines;
+
+	for (size_t k = 0; k < numbers.size(); k++)
+	{
+		sf::RectangleShape line(sf::Vector2f(4, -numbers[k]));
+		line.setPosition(4 * k, window.getSize().y);
+		lines.push_back(line);
+	}
+
+	window.clear();
+
+	for (auto& line : lines)
+	{
+		window.draw(line);
+	}
+
+	window.display();
+	usleep(2000);
 }
