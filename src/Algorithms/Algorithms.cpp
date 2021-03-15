@@ -24,29 +24,36 @@ void Algorithms::custom(std::vector<int> numbers, sf::RenderWindow& window)
 		numbers[lowestSoFar] = numbers[i];
 		numbers[i] = temp;
 
-		sf::VertexArray lines(sf::Lines);
+		std::vector<sf::RectangleShape> lines;
 
 		for (size_t k = 0; k < numbers.size(); k++)
 		{
+			sf::RectangleShape line(sf::Vector2f(4, -numbers[k]));
+
 			if (k == i)
 			{
-				lines.append(sf::Vertex(sf::Vector2f(k, window.getSize().y), sf::Color(167, 255, 131, 255)));
-				lines.append(sf::Vertex(sf::Vector2f(k, window.getSize().y - numbers[k]), sf::Color(167, 255, 131, 255)));
+				line.setFillColor(sf::Color(167, 255, 131, 255));
 			}
 			else if (k > i)
 			{
-				lines.append(sf::Vertex(sf::Vector2f(k, window.getSize().y), sf::Color(248, 89, 89, 255)));
-				lines.append(sf::Vertex(sf::Vector2f(k, window.getSize().y - numbers[k]), sf::Color(248, 89, 89, 255)));
+				line.setFillColor(sf::Color(248, 89, 89, 255));
 			}
 			else
 			{
-				lines.append(sf::Vertex(sf::Vector2f(k, window.getSize().y)));
-				lines.append(sf::Vertex(sf::Vector2f(k, window.getSize().y - numbers[k])));
+				line.setFillColor(sf::Color(255, 255, 255, 255));
 			}
+
+			line.setPosition(4 * k, window.getSize().y);
+			lines.push_back(line);
 		}
 
 		window.clear();
-		window.draw(lines);
+
+		for (auto& line : lines)
+		{
+			window.draw(line);
+		}
+
 		window.display();
 		usleep(timeout);
 	}

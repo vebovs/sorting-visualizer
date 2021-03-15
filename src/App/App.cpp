@@ -46,8 +46,8 @@ void App::Run()
 		}
 
 		window.clear();
-		//algo.custom(this->numbers, window);
-		algo.quicksort(numbers, 0, static_cast<int>(this->numbers.size()) - 1, window);
+		algo.custom(this->numbers, window);
+		//algo.quicksort(numbers, 0, static_cast<int>(this->numbers.size()) - 1, window);
 		window.close();
 	}
 }
