@@ -1,6 +1,8 @@
 #include "Algorithms.hpp"
 #include "unistd.h"
 
+int timeout = 2500;
+
 int partition(std::vector<int>& numbers, int start, int end, sf::RenderWindow& window);
 void swap(std::vector<int>& numbers, int a, int b, int pivot, sf::RenderWindow& window);
 
@@ -46,7 +48,7 @@ void Algorithms::custom(std::vector<int> numbers, sf::RenderWindow& window)
 		window.clear();
 		window.draw(lines);
 		window.display();
-		usleep(2500);
+		usleep(timeout);
 	}
 }
 
@@ -114,5 +116,5 @@ void swap(std::vector<int>& numbers, int a, int b, int pivot, sf::RenderWindow& 
 	}
 
 	window.display();
-	usleep(2500);
+	usleep(timeout);
 }
