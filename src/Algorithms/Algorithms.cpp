@@ -2,7 +2,7 @@
 #include "unistd.h"
 
 int partition(std::vector<int>& numbers, int start, int end, sf::RenderWindow& window);
-void swap(std::vector<int>& numbers, int a, int b, sf::RenderWindow& window);
+void swap(std::vector<int>& numbers, int a, int b, int pivot, sf::RenderWindow& window);
 
 Algorithms::Algorithms()
 {
@@ -71,17 +71,17 @@ int partition(std::vector<int>& numbers, int start, int end, sf::RenderWindow& w
 	{
 		if (numbers[i] < pivot)
 		{
-			swap(numbers, i, index, window);
+			swap(numbers, i, index, pivot, window);
 			index++;
 		}
 	}
 
-	swap(numbers, index, end, window);
+	swap(numbers, index, end, pivot, window);
 
 	return index;
 }
 
-void swap(std::vector<int>& numbers, int a, int b, sf::RenderWindow& window)
+void swap(std::vector<int>& numbers, int a, int b, int pivot, sf::RenderWindow& window)
 {
 	int temp = numbers[a];
 	numbers[a] = numbers[b];
@@ -89,10 +89,20 @@ void swap(std::vector<int>& numbers, int a, int b, sf::RenderWindow& window)
 
 	std::vector<sf::RectangleShape> lines;
 
-	for (size_t k = 0; k < numbers.size(); k++)
+	for (size_t i = 0; i < numbers.size(); i++)
 	{
-		sf::RectangleShape line(sf::Vector2f(4, -numbers[k]));
-		line.setPosition(4 * k, window.getSize().y);
+		sf::RectangleShape line(sf::Vector2f(4, -numbers[i]));
+
+		if (numbers[i] == pivot)
+		{
+			line.setFillColor(sf::Color(167, 255, 131, 255));
+		}
+		else if (numbers[i] > pivot)
+		{
+			line.setFillColor(sf::Color(248, 89, 89, 255));
+		}
+
+		line.setPosition(4 * i, window.getSize().y);
 		lines.push_back(line);
 	}
 
@@ -104,5 +114,5 @@ void swap(std::vector<int>& numbers, int a, int b, sf::RenderWindow& window)
 	}
 
 	window.display();
-	usleep(2000);
+	usleep(2500);
 }
