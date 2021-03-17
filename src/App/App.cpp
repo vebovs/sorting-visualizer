@@ -7,7 +7,8 @@
 App::App()
 {
 	this->N = 1000;
-	this->numbers = randomNumbers(250, N / 2 - 32);
+	this->number_of_bars = 100;
+	this->numbers = randomNumbers(this->number_of_bars, this->N / 2 - 32);
 }
 
 std::vector<int> App::randomNumbers(int size, int max)
@@ -35,7 +36,7 @@ void App::Run()
 
 	sf::Event event;
 
-	Algorithms algo = Algorithms();
+	Algorithms algo = Algorithms(this->N / this->number_of_bars);
 
 	while (window.isOpen())
 	{

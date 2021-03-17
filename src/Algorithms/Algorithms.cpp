@@ -3,11 +3,9 @@
 
 int timeout = 2500;
 
-int partition(std::vector<int>& numbers, int start, int end, sf::RenderWindow& window);
-void swap(std::vector<int>& numbers, int a, int b, int pivot, sf::RenderWindow& window);
-
-Algorithms::Algorithms()
+Algorithms::Algorithms(int bar_width)
 {
+	this->bar_width = bar_width;
 }
 
 void Algorithms::custom(std::vector<int> numbers, sf::RenderWindow& window)
@@ -28,7 +26,7 @@ void Algorithms::custom(std::vector<int> numbers, sf::RenderWindow& window)
 
 		for (size_t k = 0; k < numbers.size(); k++)
 		{
-			sf::RectangleShape line(sf::Vector2f(4, -numbers[k]));
+			sf::RectangleShape line(sf::Vector2f(this->bar_width, -numbers[k]));
 
 			if (k == i)
 			{
@@ -43,7 +41,7 @@ void Algorithms::custom(std::vector<int> numbers, sf::RenderWindow& window)
 				line.setFillColor(sf::Color(255, 255, 255, 255));
 			}
 
-			line.setPosition(4 * k, window.getSize().y);
+			line.setPosition(this->bar_width * k, window.getSize().y);
 			lines.push_back(line);
 		}
 
@@ -71,7 +69,7 @@ void Algorithms::quicksort(std::vector<int>& numbers, int start, int end, sf::Re
 	quicksort(numbers, index + 1, end, window);
 }
 
-int partition(std::vector<int>& numbers, int start, int end, sf::RenderWindow& window)
+int Algorithms::partition(std::vector<int>& numbers, int start, int end, sf::RenderWindow& window)
 {
 	int index = start;
 	int pivot = numbers[end];
@@ -90,7 +88,7 @@ int partition(std::vector<int>& numbers, int start, int end, sf::RenderWindow& w
 	return index;
 }
 
-void swap(std::vector<int>& numbers, int a, int b, int pivot, sf::RenderWindow& window)
+void Algorithms::swap(std::vector<int>& numbers, int a, int b, int pivot, sf::RenderWindow& window)
 {
 	int temp = numbers[a];
 	numbers[a] = numbers[b];
@@ -100,7 +98,7 @@ void swap(std::vector<int>& numbers, int a, int b, int pivot, sf::RenderWindow& 
 
 	for (size_t i = 0; i < numbers.size(); i++)
 	{
-		sf::RectangleShape line(sf::Vector2f(4, -numbers[i]));
+		sf::RectangleShape line(sf::Vector2f(this->bar_width, -numbers[i]));
 
 		if (numbers[i] == pivot)
 		{
@@ -111,7 +109,7 @@ void swap(std::vector<int>& numbers, int a, int b, int pivot, sf::RenderWindow& 
 			line.setFillColor(sf::Color(248, 89, 89, 255));
 		}
 
-		line.setPosition(4 * i, window.getSize().y);
+		line.setPosition(this->bar_width * i, window.getSize().y);
 		lines.push_back(line);
 	}
 

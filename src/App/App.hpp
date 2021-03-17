@@ -9,6 +9,7 @@ public:
 
 private:
 	int N;
+	int number_of_bars;
 	std::vector<int> numbers;
 	std::vector<int> randomNumbers(int size, int max);
 };
